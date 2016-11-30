@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HotelController {
 
-	String message = "Welcome to Spring MVC!";
+	String message = "Hello! Welcome to Spring MVC!";
 	 
 	@RequestMapping("/hello")
 	public String showMessage(Model model){
