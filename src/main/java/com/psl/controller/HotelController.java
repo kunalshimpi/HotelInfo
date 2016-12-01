@@ -15,25 +15,27 @@ import com.psl.service.HotelInfoService;
 
 @Controller
 public class HotelController {
-String message = "Hello";
+	String message = "Hello";
 	@Autowired
 	HotelInfoService service;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showHome(Model model) {
+
 		System.out.println("in controller");
 
 		// model.addAttribute("variable", 1234);
 
 		return "index";
 	}
+
 	@RequestMapping(value = "/{city}", method = RequestMethod.GET)
 	public String showData(Model model,
 			@PathVariable(value = "city") String city) {
 		System.out.println("in search");
 
 		// model.addAttribute("variable", 1234);
-		//List hotelList = service.getInfoFromDB(city);
+		// List hotelList = service.getInfoFromDB(city);
 		List hotelList = new ArrayList<String>();
 		hotelList.add("jkbrejkdf");
 		hotelList.add("jhetareg");
