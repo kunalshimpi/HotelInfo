@@ -18,14 +18,38 @@
 </head>
 <body style="width:100%;">
     <style>
-        #map {
+        #map{
             width:100%;
             height:500px;
             background-color:grey;
         }
-        #col1{
-        text-align: right;
-        }
+       
+button {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+ 
+button.active, button:hover {
+    background-color: #ddd; 
+}
+ 
+div.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+}
+ 
+div.panel.show {
+    display: block;
+}
     </style>
     
     <header class="jumbotron" style="background-color:#001e4f;font-family:'Segoe UI';color:white;width:100%;">
@@ -36,8 +60,8 @@
     <p style="padding:15px;"></p>
     <div class="row">
         <div class="col-xs-9 col-sm-9" style="text-align:right">
-            <input id="searchTextField" type="text" class="input-lg" style="width:80%" />
-        </div> 
+           <input id="searchTextField" type="text" class="input-lg" style="width:80%" />
+        </div>
         <div class="col-xs-3 col-sm-2">
             <button id="searchBut" class="btn-primary btn-lg btn">Search&nbsp;<span class="glyphicon-search glyphicon"></span></button>
         </div> 
@@ -52,15 +76,40 @@
 
             </div>
         </div>
-        <div class="col-xs-12 col-md-4" style="height:500px;background-color:white;">
-<p id="col1"></p>
-        </div> 
-    </div>
-
+         <div id="listview" class="listview col-xs-12 col-md-4" style="height: 500px; background-color: white;">
+          
+    	</div>
+    	
+	</div>
     <p style="padding:150px;"></p>
 
 
     <script>
+    
+    function accCollapse()
+    {
+    	var acc = document.getElementsByClassName("accordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function(){
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    function onSearch(){
+        
+        	
+        location.href= $("searchTextField").value;
+        //alert("${hotelList.toString()}");
+    }
+    
+
     
     var markLat, markLong;
     
@@ -83,7 +132,8 @@
 
             $("searchBut").addEventListener("click", onSearch, false);
      
-     
+            
+            
     function onSearch(){
      
     location.href= $("searchTextField").value;
@@ -112,11 +162,41 @@
 
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
-                            infowindow.setContent(marker[i]);
-                            infowindow.open(map, marker);
+                            infowindow.setContent(markLat[i]);
+                            infowindow.open(map, marker,markLat[i]);
                         }
                     })(marker, i));
                 }
+                window.onload=function(e){
+                	
+                	<c:forEach var="h" items="${hotelList}">
+                		
+    	                var btn = document.createElement("BUTTON");  
+    	                
+    	                btn.setAttribute("class","accordion");
+    	                btn.setAttribute("onclick","accCollapse()");
+    	                var t = document.createTextNode("${h.hotelName}");
+    	                
+    	                btn.appendChild(t);
+    	                 
+    	                $('listview').appendChild(btn);
+    	                  
+    	                     
+    	                var div1 = document.createElement("DIV");
+    	              
+    	                div1.setAttribute("class","panel");
+    	            
+    	                
+    	                var par = document.createElement("P");
+    	                var txt = document.createTextNode("${h.address} + ${h.telephone} + ${h.rating}" );
+    	                par.appendChild(txt);
+    	                
+    	                div1.appendChild(par);
+    	                
+    	                $('listview').appendChild(div1);
+    	                    
+                    </c:forEach>
+                };
             }
 
         /* function geolocate() {
