@@ -70,7 +70,7 @@ public class HotelInfoDAOImpl implements IHotelInfoDAO {
 
 	@Override
 	public void addUser(User u) {
-		template.update("insert into login_name values(" + u.getUserId() + ",'"
+		template.update("insert into login_info values(" + u.getUserId() + ",'"
 				+ u.getFirstName() + "','" + u.getLastName() + "','"
 				+ u.getCountry() + "','" + u.getEmailId() + "','"
 				+ u.getPassword() + "')");

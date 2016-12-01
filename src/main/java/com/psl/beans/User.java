@@ -13,7 +13,6 @@ public class User {
 		super();
 	}
 
-
 	public User(String firstName, String lastName, String userId,
 			String country, String emailId, String password) {
 		super();
@@ -25,12 +24,11 @@ public class User {
 		this.password = password;
 	}
 
-
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName
 				+ ", userId=" + userId + ", country=" + country + ", emailId="
-				+ emailId + "]";
+				+ emailId + ", password=" + password + "]";
 	}
 
 	public String getFirstName() {
@@ -73,11 +71,9 @@ public class User {
 		this.emailId = emailId;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
