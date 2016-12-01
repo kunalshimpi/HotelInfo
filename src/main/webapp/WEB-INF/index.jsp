@@ -62,59 +62,64 @@
 
     <script>
     
-        function $(id) {
-            return document.getElementById(id);
-        }
+    var markLat, markLong;
+    
+    markLat = [
+                <c:forEach var="h" items="${hotelList}">
+                	
+                    <c:out value="${h.latitude}"/>,
+                </c:forEach>
+            ];
+    console.log(markLat);
+    markLong = [
+              <c:forEach var="h" items="${hotelList}">
+                  <c:out value="${h.longitude}"/>,
+              </c:forEach>
+            ];
+     
+            function $(id) {
+                return document.getElementById(id);
+            }
 
-        $("searchBut").addEventListener("click", onSearch, false);
-		
-		
-		function onSearch(){
-			
-			location.href= $("searchTextField").value;
-			col1.innerHTML = "rgaerg";
-			//<c:forEach var="d" items="${hotelList }">
-			 //alert("${d}");
-		//</c:forEach>
-			
-		
-			//alert("${hotelList.toString()}");
-		}
-        
-       // function onSearch() {
-         //   $("searchTextField").onkeypress(function (e) {
-           //     google.maps.event.trigger(autocomplete, 'place_changed');
-             //   return false;
-           // });
-        //}
+            $("searchBut").addEventListener("click", onSearch, false);
+     
+     
+    function onSearch(){
+     
+    location.href= $("searchTextField").value;
+     
+    //alert("${hotelList.toString()}");
+    }
+            
+            function initMap() {
 
+            	alert(markLat[0] + " " + markLat[1]);
+            	var myLatLng = {lat: 18.5158974, lng: 73.8580789};
+                var initlatlng = new google.maps.LatLng(markLat[0],markLong[0]);
+                var mapOptions = {
+                		zoom: 14,
+                        center: initlatlng
+                };
+                var map = new google.maps.Map($('map'), mapOptions);
+                var infowindow = new google.maps.InfoWindow(); 
+                var marker, i;
 
-        function initMap() {
-            var uluru = { lat: 18.522650, lng: 73.829319 };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: uluru,
-                zoom: 14,                        // set the zoom level manually
-                zoomControl: false,
-                scaleControl: false,
-                scrollwheel: false,
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
+                for (i = 0; i < markLat.length; i++) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(markLat[i], markLong[i]),
+                        map: map
+                    });
 
-        var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(18.522650, 73.829319),
-            new google.maps.LatLng(18.525650, 73.835319));
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                            infowindow.setContent(marker[i]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                }
+            }
 
-        var input = document.getElementById('searchTextField');
-        var options = {
-            bounds: defaultBounds,
-            types: ['establishment']
-        };
-
-        function geolocate() {
+        /* function geolocate() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var geolocation = {
@@ -128,7 +133,7 @@
                     autocomplete.setBounds(circle.getBounds());
                 });
             }
-        }
+        } */
        
     </script>
     <script async="async" defer="defer"

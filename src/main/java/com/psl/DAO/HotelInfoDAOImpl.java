@@ -23,7 +23,7 @@ public class HotelInfoDAOImpl implements IHotelInfoDAO {
 
 	@Override
 	public List<Hotel> getInfoFromDB(String city) {
-		List<Hotel> list = template.query("select * from donor_tbl",
+		List<Hotel> list = template.query("select * from hotel_info",
 				new RowMapper<Hotel>() {
 
 					@Override
@@ -31,12 +31,6 @@ public class HotelInfoDAOImpl implements IHotelInfoDAO {
 							throws SQLException {
 
 						Hotel h = new Hotel();
-						/*
-						 * d.setDonorId(rs.getInt("donorId"));
-						 * d.setDonorName(rs.getString("donorName"));
-						 * d.setBloodGroup(rs.getString("bloodGroup"));
-						 */
-
 						h.setHotelId(rs.getInt("hotelId"));
 						h.setHotelName(rs.getString("hotelName"));
 						h.setAddress(rs.getString("address"));
@@ -51,20 +45,23 @@ public class HotelInfoDAOImpl implements IHotelInfoDAO {
 					}
 
 				});
-
+		//System.out.println(list);
 		List<Hotel> listCity = new ArrayList<Hotel>();
-		for (int i = 0; i < list.size() - 1; i++) {
-			if (list.get(i).equals(city)) {
-				listCity.add(list.get(i));
+		
+		for (Hotel hotel : list) {
+		//	System.out.println(hotel);
+			if (hotel.getCity().equalsIgnoreCase(city)) {
+				listCity.add(hotel);
 			}
 		}
+		//System.out.println(listCity);
 		return listCity;
 
 	}
 
 	@Override
 	public void addInfoToDB(Hotel h) {
-		template.update("insert into table_name values(" + h.getHotelId()
+		template.update("insert into hotel_info values(" + h.getHotelId()
 				+ ",'" + h.getHotelName() + "','" + h.getAddress() + "','"
 				+ h.getCity() + "','" + h.getState() + "','" + h.getTelephone()
 				+ "','" + h.getLongitude() + "','" + h.getLatitude() + "','"
@@ -73,18 +70,29 @@ public class HotelInfoDAOImpl implements IHotelInfoDAO {
 
 	@Override
 	public void addUser(User u) {
-		template.update("insert into table_name values(" + u.getUserId() + ",'"
+		template.update("insert into login_name values(" + u.getUserId() + ",'"
 				+ u.getFirstName() + "','" + u.getLastName() + "','"
-				+ u.getUserId() + "','" + u.getCountry() + "','"
-				+ u.getEmailId() + "','" + u.getPassword() + "')");
+				+ u.getCountry() + "','" + u.getEmailId() + "','"
+				+ u.getPassword() + "')");
 	}
 
-	
-
 	@Override
-	public boolean checkLogIn(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkLogIn(User user) {
+		String sql = "select password from login_info where emailId = ?";
+
+		Object[] inputs = new Object[] { user.getEmailId() };
+		String pass = template.queryForObject(sql, inputs, String.class);
+		if (pass.equals(user.getPassword())) {
+			return true;
+		} else {
+			return false;
+		}
+		/*
+		 * String query = "select name from employee where emp_id=?"; Object[]
+		 * inputs = new Object[] {empId}; String empName =
+		 * getJdbcTemplate().queryForObject(query, inputs, String.class); return
+		 * empName;
+		 */
 	}
 
 }

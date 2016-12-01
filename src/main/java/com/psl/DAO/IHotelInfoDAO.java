@@ -10,6 +10,6 @@ public interface IHotelInfoDAO {
 	public List<Hotel> getInfoFromDB(String city);
 	public void addInfoToDB(Hotel h); 
 	public void addUser(User u);
-	public boolean checkLogIn(int id);
+	public boolean checkLogIn(User user);
 	
 }
