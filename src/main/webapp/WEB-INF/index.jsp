@@ -1,90 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>International Travel Yellow Pages</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<title>International Travel Yellow Pages</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 
 </head>
-<body style="width:100%;">
-    <style>
-        #map{
-            width:100%;
-            height:500px;
-            background-color:grey;
-        }
-       
+<body style="width: 100%;">
+	<style>
+#map {
+	width: 100%;
+	height: 500px;
+	background-color: grey;
+}
+
 button {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
+	background-color: #eee;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
 }
- 
+
 button.active, button:hover {
-    background-color: #ddd; 
+	background-color: #ddd;
 }
- 
+
 div.panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
+	padding: 0 18px;
+	display: none;
+	background-color: white;
+	overflow: hidden;
+	opacity: 0;
+    transition: 0.6s ease-in-out;
 }
- 
+button.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
 div.panel.show {
-    display: block;
+	opacity:1;
+	max-height: :500px;
 }
-    </style>
-    
-    <header class="jumbotron" style="background-color:#001e4f;font-family:'Segoe UI';color:white;width:100%;">
-        <p style="padding:15px;"></p>
-        <h1 class="h1" style="text-align:center"><span class="glyphicon-globe glyphicon"></span> &nbsp;International Travel Yellow Pages</h1>
-        <p style="padding:15px;"></p>
-    </header>
-    <p style="padding:15px;"></p>
-    <div class="row">
-        <div class="col-xs-9 col-sm-9" style="text-align:right">
-           <input id="searchTextField" type="text" class="input-lg" style="width:80%" />
-        </div>
-        <div class="col-xs-3 col-sm-2">
-            <button id="searchBut" class="btn-primary btn-lg btn">Search&nbsp;<span class="glyphicon-search glyphicon"></span></button>
-        </div> 
-    </div>
-    
-        
-    
-    <p style="padding:15px;"></p>
-    <div class="mainBody row">
-        <div class="mapContainer col-xs-12 col-md-8" style="height:500px;">
-            <div id="map">
+.paramargin{
+	margin:3px;
+}
+</style>
 
-            </div>
-        </div>
-         <div id="listview" class="listview col-xs-12 col-md-4" style="height: 500px; background-color: white;">
-          
-    	</div>
-    	
+	<header class="jumbotron"
+		style="background-color: #001e4f; font-family: 'Segoe UI'; color: white; width: 100%;">
+		<p style="padding: 3px;"></p>
+		<h1 class="h1" style="text-align: center">
+			<span class="glyphicon-globe glyphicon"></span> &nbsp;International
+			Travel Yellow Pages
+		</h1>
+		 <p style="padding: 3px;"></p> 
+	</header>
+	<!-- <p style="padding: 5px;"></p> -->
+	<div class="row">
+		<div class="col-xs-9 col-sm-9" style="text-align: right">
+			<input id="searchTextField" type="text" class="input-lg" placeholder="Enter City"
+				style="width: 80%" />
+		</div>
+		<div class="col-xs-3 col-sm-2">
+			<button id="searchBut" class="btn-primary btn-lg btn">
+				Search&nbsp;<span class="glyphicon-search glyphicon"></span>
+			</button>
+		</div>
 	</div>
-    <p style="padding:150px;"></p>
 
 
-    <script>
+
+	<p style="padding: 8px;"></p>
+	<div class="mainBody row">
+		<div class="mapContainer col-xs-12 col-md-8" style="height: 500px;">
+			<div id="map"></div>
+		</div>
+		<div id="listview" class="listview col-xs-12 col-md-3"
+			style="height: 500px; background-color: white; overflow-y: scroll; height: 500px;">
+
+		</div>
+
+	</div>
+	<p style="padding: 150px;"></p>
+
+
+	<script>
     
     function accCollapse()
     {
@@ -111,7 +143,7 @@ div.panel.show {
     
 
     
-    var markLat, markLong;
+    var markLat, markLong,hotelnames;
     
     markLat = [
                 <c:forEach var="h" items="${hotelList}">
@@ -125,7 +157,10 @@ div.panel.show {
                   <c:out value="${h.longitude}"/>,
               </c:forEach>
             ];
-     
+    
+    
+    
+    
             function $(id) {
                 return document.getElementById(id);
             }
@@ -143,7 +178,7 @@ div.panel.show {
             
             function initMap() {
 
-            	alert(markLat[0] + " " + markLat[1]);
+            //	alert(markLat[0] + " " + markLat[1]);
             	var myLatLng = {lat: 18.5158974, lng: 73.8580789};
                 var initlatlng = new google.maps.LatLng(markLat[0],markLong[0]);
                 var mapOptions = {
@@ -153,17 +188,26 @@ div.panel.show {
                 var map = new google.maps.Map($('map'), mapOptions);
                 var infowindow = new google.maps.InfoWindow(); 
                 var marker, i;
-
+                var html = [];
+                var j=0;
+                <c:forEach var="h" items="${hotelList}">
+        			var name="${h.hotelName}";
+        			var address="${h.address}";
+        			html[j] = "<b>" + name + "</b> <br/>" + address;
+        			j++;
+        	 	</c:forEach>
                 for (i = 0; i < markLat.length; i++) {
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(markLat[i], markLong[i]),
                         map: map
                     });
-
+                    
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
-                            infowindow.setContent(markLat[i]);
-                            infowindow.open(map, marker,markLat[i]);
+                        	
+                            infowindow.setContent(html[i]);
+                            infowindow.open(map, marker, html[i]);
+                           
                         }
                     })(marker, i));
                 }
@@ -187,18 +231,36 @@ div.panel.show {
     	                div1.setAttribute("class","panel");
     	            
     	                
-    	                var par = document.createElement("P");
-    	                var txt = document.createTextNode("${h.address} + ${h.telephone} + ${h.rating}" );
-    	                par.appendChild(txt);
+    	                var par1 = document.createElement("P");
+    	                par1.setAttribute("class","paramargin");
+    	                var txt1 = document.createTextNode("Address: ${h.address}" );
+    	                par1.appendChild(txt1);
     	                
-    	                div1.appendChild(par);
+    	                
+    	                var par2 = document.createElement("P");
+    	                par2.setAttribute("class","paramargin");
+    	                var txt2 = document.createTextNode("Telephone: ${h.telephone} " );
+    	                par2.appendChild(txt2);
+    	                
+    	                var par3 = document.createElement("P");
+    	                par3.setAttribute("class","paramargin");
+    	                var txt3 = document.createTextNode("Rating: ${h.rating}" );
+    	                par3.appendChild(txt3);
+    	                
+    	                
+    	                
+    	                div1.appendChild(par1);
+    	                div1.appendChild(par2);
+    	                div1.appendChild(par3);
     	                
     	                $('listview').appendChild(div1);
     	                    
                     </c:forEach>
                 };
             }
-
+           
+            
+            
         /* function geolocate() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -214,10 +276,10 @@ div.panel.show {
                 });
             }
         } */
-       
+        
     </script>
-    <script async="async" defer="defer"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&callback=initMap">
+	<script async="async" defer="defer"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&callback=initMap">
     </script>
 </body>
 </html>
