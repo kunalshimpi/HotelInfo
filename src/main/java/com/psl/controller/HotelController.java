@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.Projection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,7 +27,12 @@ public class HotelController {
 	String message = "Hello";
 	@Autowired
 	HotelInfoService service;
-
+	
+	
+	
+	/*String imgpath=project.getProperties().getProperty("cimage");*/
+	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showHome(Model model) {
 

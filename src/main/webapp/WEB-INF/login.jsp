@@ -28,7 +28,7 @@
 	if(${userBool}){
 		alert("successfull");
 	}else{
-		alert("Invalid Username");
+		alert("Invalid Username or Password");
 	}
 	</script>
 </head>
