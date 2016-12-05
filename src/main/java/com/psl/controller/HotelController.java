@@ -37,10 +37,10 @@ public class HotelController {
 	public String showHome(Model model) {
 
 		System.out.println("in controller");
-
+		
 		// model.addAttribute("variable", 1234);
 
-		return "index";
+		return "landingpage";
 	}
 
 	@RequestMapping(value = "/{city}", method = RequestMethod.GET)

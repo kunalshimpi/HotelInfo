@@ -23,9 +23,9 @@
 		<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="ds">
 		<property name="driverClassName" value="${db.driverClass}" />
-		<property name="url" value="jdbc:mysql://localhost:3306/hotel_region1" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="url" value="${db.connectionURL}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
 	</bean>
 
 </beans>

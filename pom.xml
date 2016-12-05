@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- spring-context which provides core functionality -->
@@ -19,6 +19,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.27</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.3.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -82,7 +88,7 @@
 	</properties>
 	<build>
 		<finalName>HotelInfo</finalName>
-		 <plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -102,15 +108,22 @@
 							<directory>src/main/webapp</directory>
 							<includes>
 								<include>**/*.xml</include>
-								include any other file types you want to filter
+							</includes>
+						</resource>
+
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>**/*.jsp</include>
 							</includes>
 						</resource>
 					</webResources>
 				</configuration>
 			</plugin>
-		</plugins> 
+		</plugins>
 		<resources>
-		
+
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
@@ -119,13 +132,24 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>usny</id>
+			<id>build_us</id>
 			<properties>
 				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
-				<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region1</db.connectionURL>
+				<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region_us</db.connectionURL>
 				<db.username>root</db.username>
 				<db.password>root</db.password>
 				<cimage>https://www.omsoftware.net/uploads/posting_images/ca8858fe244fb706d158962b145c0223.jpg</cimage>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>build_in</id>
+			<properties>
+				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+				<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region_in</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<cimage>https://goldentriangletourindiaim.files.wordpress.com/2013/09/gt27-9.jpg</cimage>
 			</properties>
 		</profile>
 	</profiles>
