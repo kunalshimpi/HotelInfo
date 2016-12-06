@@ -12,12 +12,13 @@
 	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="template">
 		<property name="dataSource" ref="ds" />
 	</bean>
+	<!-- <mvc:default-servlet-handler/>-->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/</value>
 		</property>
-		<property name="suffix" value=".jsp"></property>
+		<property name="suffix" value=".jsp"></property> 
 
 	</bean>
 		<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"

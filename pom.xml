@@ -52,7 +52,11 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.3.3.RELEASE</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 		<!-- The spring-aop module provides an AOP Alliance-compliant aspect-oriented 
 			programming implementation allowing you to define -->
 		<dependency>
