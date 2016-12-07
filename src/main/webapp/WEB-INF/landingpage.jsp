@@ -83,7 +83,7 @@
 <!-- AddToAny END -->
                 
                 <div class="col-xs-12 col-md-3">
-                    <button type="button"  style="text-align:right" id="signup" class="btn-personal hidden-xs" ><a href="http://localhost:8080/HotelInfo/login">Login/SignUp</a> <span class="glyphicon-log-in glyphicon"></span></button> 
+                    <button type="button"  style="text-align:right" id="signup" class="btn-personal hidden-xs" >Login/SignUp <span class="glyphicon-log-in glyphicon"></span></button> 
                     <button type="button"  style="text-align:right" class="btn-personal hidden-sm hidden-md hidden-lg"><span class="glyphicon-log-in glyphicon"></span></button> 
                 </div> 
          </div> 
@@ -237,10 +237,14 @@
         <p style="padding:20px;"></p>
     </footer>
     
-  <!--   <script type="text/javascript">
+    <script type="text/javascript">
     	var sign = document.getElementById("signup");
     	sign.addEventListener("click", toLoginPage);
     
-    </script> -->
+    	function toLoginPage(){
+    		location.href = "login";
+    	}
+    	
+    </script>
 </body>
 </html>

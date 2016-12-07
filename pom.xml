@@ -142,7 +142,7 @@
 				<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region_us</db.connectionURL>
 				<db.username>root</db.username>
 				<db.password>root</db.password>
-				<cimage>https://www.omsoftware.net/uploads/posting_images/ca8858fe244fb706d158962b145c0223.jpg</cimage>
+				<cimage>http://previews.123rf.com/images/vectomart/vectomart1306/vectomart130600007/20138033-illustration-of-Statue-of-Liberty-on-American-flag-background-for-Independence-Day-Stock-Vector.jpg</cimage>
 			</properties>
 		</profile>
 
