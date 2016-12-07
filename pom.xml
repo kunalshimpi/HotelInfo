@@ -87,8 +87,15 @@
 
 
 	<properties>
+		<java.version>1.7</java.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+		<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region_us</db.connectionURL>
+		<db.username>root</db.username>
+		<db.password>root</db.password>
+		<cimage>http://previews.123rf.com/images/vectomart/vectomart1306/vectomart130600007/20138033-illustration-of-Statue-of-Liberty-on-American-flag-background-for-Independence-Day-Stock-Vector.jpg</cimage>
+
 	</properties>
 	<build>
 		<finalName>HotelInfo</finalName>
@@ -99,6 +106,15 @@
 				<version>2.6</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -125,6 +141,47 @@
 					</webResources>
 				</configuration>
 			</plugin>
+			<plugin>
+                                                <groupId>com.spotify</groupId>
+                                                <artifactId>docker-maven-plugin</artifactId>
+                                                <version>0.4.13</version>
+                                                <executions>
+                                                                <execution>
+                                                                                <phase>package</phase>
+                                                                                <goals>
+                                                                                                <goal>build</goal>
+                                                                                </goals>
+                                                                </execution>
+                                                </executions>
+                                                <configuration>
+                                                                <imageName>keydocker/hotelinfo</imageName>
+                                                                <baseImage>tomcat:8.0</baseImage>
+                                                                <maintainer>keydocker</maintainer>
+                                                                <dockerHost>https://192.168.99.100:2376</dockerHost>
+                                                                <exposes>
+                                                                                <expose>8080</expose>
+                                                                </exposes>
+                                                                <entryPoint>
+                                                                                ["catalina.sh", "run", "/usr/local/tomcat/webapps/${project.build.finalName}.war"]
+                                                                </entryPoint>
+                               
+                                                                 <serverId>docker-hub</serverId>
+                                                                <registryUrl>https://index.docker.io/v1/</registryUrl>
+                               
+                                                                  <resources>        <!-- Dockerfile building resources -->
+                                                                                  <resource>
+                                                                                                  <targetPath>/usr/local/tomcat/webapps/</targetPath>
+                                                                                                  <directory>${project.build.directory}</directory>
+                                                                                                  <excludes>
+                                                                                                                  <exclude>target/**/*</exclude>
+                                                                                                                  <exclude>pom.xml</exclude>
+                                                                                                                  <exclude>*.iml</exclude>
+                                                                                                  </excludes>
+                                                                                                  <include>${project.build.finalName}.war</include>
+                                                                                  </resource>
+                                                                  </resources>
+                                                </configuration>
+                                </plugin>
 		</plugins>
 		<resources>
 
@@ -134,27 +191,5 @@
 			</resource>
 		</resources>
 	</build>
-	<profiles>
-		<profile>
-			<id>build_us</id>
-			<properties>
-				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
-				<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region_us</db.connectionURL>
-				<db.username>root</db.username>
-				<db.password>root</db.password>
-				<cimage>http://previews.123rf.com/images/vectomart/vectomart1306/vectomart130600007/20138033-illustration-of-Statue-of-Liberty-on-American-flag-background-for-Independence-Day-Stock-Vector.jpg</cimage>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>build_in</id>
-			<properties>
-				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
-				<db.connectionURL>jdbc:mysql://localhost:3306/hotel_region_in</db.connectionURL>
-				<db.username>root</db.username>
-				<db.password>root</db.password>
-				<cimage>https://goldentriangletourindiaim.files.wordpress.com/2013/09/gt27-9.jpg</cimage>
-			</properties>
-		</profile>
-	</profiles>
+	
 </project>
