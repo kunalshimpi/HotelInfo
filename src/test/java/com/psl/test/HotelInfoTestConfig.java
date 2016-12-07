@@ -1,4 +1,4 @@
-package com.psl.mytest;
+package com.psl.test;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import com.psl.DAO.IHotelInfoDAO;
 import com.psl.service.HotelInfoService;
 
 @Configuration
-public class EmployeeTestConfig {
+public class HotelInfoTestConfig {
 
 	@Bean
 	HotelInfoService getService(){
@@ -16,6 +16,6 @@ public class EmployeeTestConfig {
 	
 	@Bean
 	IHotelInfoDAO getDAO(){
-		return new EmployeeDAOStub();
+		return new HotelInfoDAOStub();
 	}
 }

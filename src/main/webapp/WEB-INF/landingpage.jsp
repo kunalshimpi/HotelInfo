@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>User Login Page</title>
+    <title>Home Page</title>
     <!-- Latest compiled and minified CSS -->
    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" />-->
 
@@ -11,7 +11,7 @@
     <!-- Latest compiled and minified JavaScript -->
    <!-- <script src="js/bootstrap.min.js"></script>-->
 
-    <script src="/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
      <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -60,6 +60,94 @@
             background-color:#b2b0b0;
             text-align:center;
         }
+        
+        #d1{
+background-color: rgb(220,220,220);
+}
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background-color: rgba(75,75,75,0.7);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.hovereffect:hover .overlay {
+  background-color: rgba(48, 152, 157, 0.4);
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transform: translateY(45px);
+  -ms-transform: translateY(45px);
+  transform: translateY(45px);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.hovereffect:hover h2 {
+  -webkit-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  transform: translateY(5px);
+}
+
+.hovereffect a.info {
+  display: inline-block;
+  text-decoration: none;
+  padding: 7px 14px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  font-weight: normal;
+  margin: -52px 0 0 0;
+  padding: 62px 100px;
+}
+
+.hovereffect:hover a.info {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.hovereffect a.info:hover {
+  box-shadow: 0 0 5px #fff;
+}
   </style>
 </head>
 <body>
@@ -83,7 +171,7 @@
 <!-- AddToAny END -->
                 
                 <div class="col-xs-12 col-md-3">
-                    <button type="button"  style="text-align:right" id="signup" class="btn-personal hidden-xs" >Login/SignUp <span class="glyphicon-log-in glyphicon"></span></button> 
+                    <button type="button"  style="text-align:right" id="signup" class="btn-personal hidden-xs" >Proceed <span class="glyphicon glyphicon-circle-arrow-right"></span></button> 
                     <button type="button"  style="text-align:right" class="btn-personal hidden-sm hidden-md hidden-lg"><span class="glyphicon-log-in glyphicon"></span></button> 
                 </div> 
          </div> 
@@ -180,8 +268,49 @@
             <a class="left carousel-control" data-slide="prev" href="#myCarousel" role="button"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span> </a><a class="right carousel-control" data-slide="next" href="#myCarousel" role="button"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span> </a>
         </div>
         <p style="padding:18px;"></p>
+        
+        <div class="col-xs-12">
+        
+        
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="hovereffect">
+        <img class="img-responsive" src="http://q-ec.bstatic.com/images/hotel/840x460/238/23856957.jpg" alt="">
+        <div class="overlay">
+           <h2>Viceroy Central Park New York</h2>
+           <a class="info" href="http://q-ec.bstatic.com/images/hotel/840x460/238/23856957.jpg"></a>
+        </div>
+    </div>
+</div>
+        
+        
+        
+        
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="hovereffect">
+        <img class="img-responsive" src="http://www.hotel-r.net/im/hotel/us/the-pierre-a-taj-hotel-new-york-18.jpg" alt="">
+        <div class="overlay">
+           <h2>The Pierre, A Taj Hotel, New York</h2>
+           <a class="info" href="http://www.hotel-r.net/im/hotel/us/the-pierre-a-taj-hotel-new-york-18.jpg"></a>
+        </div>
+    </div>
+</div>
+        
+       		           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="hovereffect">
+        <img class="img-responsive" src="https://i.ytimg.com/vi/R8Bz6-DsemI/maxresdefault.jpg" alt="">
+        <div class="overlay">
+           <h2>The Beekman, A Thompson Hotel</h2>
+           <a class="info" href="https://i.ytimg.com/vi/R8Bz6-DsemI/maxresdefault.jpg"></a>
+        </div>
+    </div>
+</div>
+       
+        </div>
+        <br><br>
+        &nbsp;
+        
         <div class="row">
-            <div class="col-xs-12 col-md-4" style="font-family:'Segoe UI';font-size:30px;">
+            <div id="d1" class="col-xs-12 col-md-4" style="font-family:'Segoe UI';font-size:30px; border: 2px solid black">
                 <fieldset>
                     <legend style="font-family:'Segoe UI';font-size:35px;">The places we serve</legend>
                     <ul>
@@ -191,7 +320,8 @@
                     </ul>
                 </fieldset>
             </div> 
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-2"></div>
+            <div id="d1" class="col-xs-12 col-md-6" style="border: 2px solid black;">
                 <fieldset>
                     <legend style="font-family:'Segoe UI';font-size:35px;">Our Motto:</legend>
                     <p style="font-family:cursive;font-size:30px;">
@@ -208,7 +338,7 @@
                 
                     <div class="well">
                         <span class="glyphicon-bookmark glyphicon"></span><p>The most authentic information on the internet !</p>
-                        -<cite>Dinesh Patil</cite>, A happy Customer
+                        -<cite>James Smith</cite>
                     </div>
                 
             </div> 
@@ -216,15 +346,15 @@
                 
                     <div class="well">
                         <span class="glyphicon-bookmark glyphicon"></span><p>Now I can enjoy more freely on my vacations.</p>
-                        -<cite>Dewang Agrawal</cite>, A Tension-Free Customer
+                        -<cite>Maria Rodriguez</cite>
                     </div>
                 
             </div>
             <div class="col-xs-12 col-md-3 col-md-offset-1">
                 
                     <div class="well">
-                        <span class="glyphicon-bookmark glyphicon"></span><p>I coded the App</p>
-                        -<cite>Kunal Shimpi</cite>, A Developer Customer
+                        <span class="glyphicon-bookmark glyphicon"></span><p>A good way to find Hotels in new city..</p>
+                        -<cite>James Johnson</cite>
                     </div>
                 
             </div>
@@ -242,7 +372,7 @@
     	sign.addEventListener("click", toLoginPage);
     
     	function toLoginPage(){
-    		location.href = "login";
+    		location.href = "index";
     	}
     	
     </script>

@@ -1,4 +1,4 @@
-package com.psl.mytest;
+package com.psl.test;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.psl.beans.Hotel;
 import com.psl.beans.User;
 
 
-public class EmployeeDAOStub implements IHotelInfoDAO{
+public class HotelInfoDAOStub implements IHotelInfoDAO{
 
 	@Override
 	public List<Hotel> getInfoFromDB(String city) {

@@ -10,7 +10,7 @@
 
 
 	<context:component-scan base-package="com.psl" />
-	<context:component-scan base-package="com.psl.mytest" />
+	<context:component-scan base-package="com.psl.test" />
 	<!-- <mvc:default-servlet-handler /> -->
 
 
