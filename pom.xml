@@ -162,8 +162,7 @@
 						<expose>8080</expose>
 					</exposes>
 					<entryPoint>
-						["catalina.sh", "run",
-						"/usr/local/tomcat/webapps/${project.build.finalName}.war"]
+						["catalina.sh", "run", "/usr/local/tomcat/webapps/${project.build.finalName}.war"]
 					</entryPoint>
 
 					<serverId>docker-hub</serverId>
