@@ -379,5 +379,7 @@ function myFunction(){
 	<script async="async" defer="defer"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&libraries=places">
     </script>
+    
+    <marquee><b>This is CICD for a containerized app</b></marquee>
 </body>
 </html>
