@@ -6,6 +6,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>International Travel Yellow Pages</title>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -103,9 +107,10 @@ span.glyphicon-plane {
 				placeholder="Enter City" style="width: 80%" />
 		</div>
 		<div class="col-xs-3 col-sm-2">
-			<button id="searchBut" class="btn-primary btn-lg btn">
+			<!-- <button id="btnSearch"  class="btn-primary btn-lg btn">
 				Search&nbsp;<span class="glyphicon-search glyphicon"></span>
-			</button>
+			</button> -->
+			 <input id="btnSearch" class="btn-primary btn-lg btn" onclick="myFunction()" type="button" value="search" /> 
 		</div>
 	</div>
 
@@ -148,7 +153,7 @@ span.glyphicon-plane {
     }
     var markLat, markLong,hotelnames;
     
-    markLat = [
+   /*  markLat = [
                 <c:forEach var="h" items="${hotelList}">
                
                     <c:out value="${h.latitude}"/>,
@@ -159,25 +164,25 @@ span.glyphicon-plane {
               <c:forEach var="h" items="${hotelList}">
                   <c:out value="${h.longitude}"/>,
               </c:forEach>
-            ];
+            ]; */
             function $(id) {
                 return document.getElementById(id);
             }
 
-            $("searchBut").addEventListener("click", onSearch, false);
+          /*   $("searchBut").addEventListener("click", onSearch, false); */
      
-    function onSearch(){
+   /*  function onSearch(){
     //location.href= $("searchTextField").value;
     
      
-    }
+    } */
     
     var map;
     var infowindow;
 	var service;
 	var details1 =[];
-    function initMap() {
-      var pyrmont = {lat: 40.730610, lng: -73.935242};
+    function initMap(latt,longt) {
+      var pyrmont = {lat: latt, lng: longt};
 
       map = new google.maps.Map(document.getElementById('map'), {
         center: pyrmont,
@@ -345,9 +350,34 @@ span.glyphicon-plane {
                     </c:forEach>
                 };
             }*/
+            
+            
+            
     </script>
+    
+    
+    <script type="text/javascript">
+function myFunction(){
+	
+	
+		var t = document.getElementById("searchTextField").value;
+		  	
+		    var geocoder =  new google.maps.Geocoder();
+		geocoder.geocode( { 'address': t}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+		    var lat = results[0].geometry.location.lat() ;var lng = results[0].geometry.location.lng(); 
+		    
+		    initMap(lat,lng);
+		  } else {
+		    alert("Something got wrong " + status);
+		  }
+		});
+
+};
+</script>
+    
 	<script async="async" defer="defer"
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&libraries=places&callback=initMap">
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&libraries=places">
     </script>
 </body>
 </html>
