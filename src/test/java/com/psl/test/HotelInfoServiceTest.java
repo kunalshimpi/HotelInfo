@@ -26,6 +26,15 @@ public class HotelInfoServiceTest {
 		assertEquals( "class com.psl.service.HotelInfoService", this.service.getClass().toString());
 		
 	}
+	@Test
+	public void junitTest() {
+		assertEquals(true,true);
+		
+	}
+	@Test
+	public void unitTest(){
+		assertEquals(true,true);
+	}
 	
 	
 	
