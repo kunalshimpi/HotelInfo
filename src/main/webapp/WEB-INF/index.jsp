@@ -366,7 +366,10 @@ function myFunction(){
 		geocoder.geocode( { 'address': t}, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK) {
 		    var lat = results[0].geometry.location.lat() ;var lng = results[0].geometry.location.lng(); 
-		    
+		    var node = $('listview');
+		    while(node.firstChild){
+		    	node.removeChild(node.firstChild);
+		    }
 		    initMap(lat,lng);
 		  } else {
 		    alert("Something got wrong " + status);
