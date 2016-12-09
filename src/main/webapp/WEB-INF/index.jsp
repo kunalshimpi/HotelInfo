@@ -383,6 +383,6 @@ function myFunction(){
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&libraries=places">
     </script>
     
-    <marquee><b>This is CICD for a containerized app!!!!!!!!!!</b></marquee>
+    <marquee><h2>This is a Travel Yellow Page</h2></marquee>
 </body>
 </html>
