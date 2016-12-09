@@ -114,7 +114,7 @@ span.glyphicon-plane {
 		</div>
 	</div>
 
-
+  <marquee><h2>This is a Travel Yellow Page</h2></marquee>
 
 	<p style="padding: 8px;"></p>
 	<div class="mainBody row">
@@ -383,6 +383,6 @@ function myFunction(){
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLxcVy36l3WaCoCm9k33TzBhriQECG9p0&libraries=places">
     </script>
     
-    <marquee><h2>This is a Travel Yellow Page</h2></marquee>
+  
 </body>
 </html>
