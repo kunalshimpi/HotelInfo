@@ -36,6 +36,11 @@ public class HotelInfoServiceTest {
 		assertEquals(true,true);
 	}
 	
+	@Test
+	public void unit2Test(){
+		assertEquals(true,true);
+	}
+	
 	
 	
 	/*@Test
