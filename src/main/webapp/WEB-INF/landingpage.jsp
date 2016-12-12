@@ -181,7 +181,7 @@ background-color: rgb(220,220,220);
     </div>
     <header class="jumbotron" style="background-color:#001e4f;font-family:'Segoe UI';color:white;width:100%;">
         <p style="padding:1px;"></p>
-        <h1 class="h1" style="text-align:center"><span class="glyphicon-globe glyphicon"></span> &nbsp;International Travel Yellow Pages</h1>
+        <h1 class="h1" style="text-align:center"><span class="glyphicon-globe glyphicon"></span> &nbsp;Travel Yellow Pages</h1>
         <p style="padding:15px;"></p>
         
         

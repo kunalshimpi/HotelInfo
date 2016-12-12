@@ -93,7 +93,7 @@ span.glyphicon-plane {
 		style="background-color: #001e4f; font-family: 'Segoe UI'; color: white; width: 100%;">
 		<p style="padding: 3px;"></p>
 		<h1 class="h1" style="text-align: center">
-			<span class="glyphicon-globe glyphicon"></span> &nbsp;International
+			<span class="glyphicon-globe glyphicon"></span> &nbsp;
 			Travel Yellow Pages
 		</h1>
 		<p style="padding: 3px;"></p>
