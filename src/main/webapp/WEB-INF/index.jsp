@@ -114,7 +114,7 @@ span.glyphicon-plane {
 		</div>
 	</div>
 
-     <!-- <marquee><h2>This is a Travel Yellow Page</h2></marquee> --> 
+     <marquee><h2>This is a Travel Yellow Page</h2></marquee> 
 
 	<p style="padding: 8px;"></p>
 	<div class="mainBody row">
